@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Login Page</title>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1e3a8a","secondary": "#dc2626","background-light": "#f8fafc",
+                        "background-dark": "#0f172a",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            min-height: max(600px, 100dvh);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-white overflow-x-hidden">
+<div class="fixed inset-0 -z-10 h-full w-full bg-white dark:bg-slate-950 [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#1e3a8a_100%)] dark:[background:radial-gradient(125%_125%_at_50%_10%,#0f172a_40%,#1e3a8a_100%)] opacity-30"></div>
+<div class="flex min-h-screen flex-col justify-center px-6 py-12 lg:px-8">
+<div class="sm:mx-auto sm:w-full sm:max-w-sm">
+<div class="flex justify-center">
+<div class="relative flex h-28 w-28 items-center justify-center rounded-full bg-white dark:bg-slate-800 shadow-2xl border-[3px] border-primary z-10 ring-4 ring-white dark:ring-slate-900">
+<div class="absolute inset-1 rounded-full border border-dashed border-gray-300 dark:border-gray-600"></div>
+<div class="relative flex items-center justify-center mb-1">
+<span class="material-symbols-outlined text-[3.5rem] text-secondary fill-1" style="font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 48;">stars</span>
+</div>
+<div class="absolute -bottom-3 bg-primary text-white text-[11px] font-bold px-4 py-1.5 rounded-full uppercase tracking-widest shadow-lg border-2 border-white dark:border-slate-800 z-20">
+                        Union
+                    </div>
+</div>
+</div>
+<h2 class="mt-8 text-center text-3xl font-extrabold leading-9 tracking-tight text-slate-900 dark:text-white uppercase drop-shadow-sm">Youth Union</h2>
+<p class="mt-1 text-center text-xs font-bold tracking-[0.2em] text-primary dark:text-blue-400 uppercase">Member Management System</p>
+</div>
+<div class="mt-8 sm:mx-auto sm:w-full sm:max-w-sm bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-xl border-t-4 border-secondary ring-1 ring-gray-900/5 dark:ring-white/10">
+<form action="/auth/login" class="space-y-5" method="POST">
+<div>
+<label class="block text-sm font-semibold leading-6 text-slate-900 dark:text-white" for="email">Membership ID or Email</label>
+<div class="relative mt-2 rounded-md shadow-sm group">
+<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 transition-colors">
+<span class="material-symbols-outlined text-gray-400 group-focus-within:text-primary transition-colors text-[22px]">account_circle</span>
+</div>
+<input autocomplete="email" class="block w-full rounded-lg border-0 py-3.5 pl-11 text-slate-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-slate-700 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6 bg-slate-50 dark:bg-slate-800/50 transition-all" id="email" name="email" placeholder="Enter ID number" required type="text"/>
+</div>
+</div>
+<div>
+<div class="flex items-center justify-between">
+<label class="block text-sm font-semibold leading-6 text-slate-900 dark:text-white" for="password">Password</label>
+</div>
+<div class="relative mt-2 rounded-md shadow-sm group">
+<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 transition-colors">
+<span class="material-symbols-outlined text-gray-400 group-focus-within:text-primary transition-colors text-[22px]">lock</span>
+</div>
+<input autocomplete="current-password" class="block w-full rounded-lg border-0 py-3.5 pl-11 pr-10 text-slate-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-slate-700 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6 bg-slate-50 dark:bg-slate-800/50 transition-all" id="password" name="password" placeholder="••••••••" required type="password"/>
+<div class="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer">
+<span class="material-symbols-outlined text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors text-[20px]">visibility_off</span>
+</div>
+</div>
+<div class="text-right mt-2">
+<a class="font-bold text-primary hover:text-blue-700 text-xs uppercase tracking-wide transition-colors" href="#">Forgot password?</a>
+</div>
+</div>
+<div>
+<button class="flex w-full justify-center rounded-lg bg-primary px-3 py-3.5 text-sm font-bold uppercase tracking-wider text-white shadow-lg shadow-blue-900/20 hover:bg-blue-800 hover:shadow-blue-900/30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-all active:scale-[0.98]" type="submit">
+                        Sign In
+                    </button>
+</div>
+</form>
+<div class="mt-8 pt-6 border-t border-gray-100 dark:border-slate-800">
+<p class="text-center text-sm text-gray-500 dark:text-gray-400">
+                    New member?
+                    <a class="font-bold leading-6 text-secondary hover:text-red-700 ml-1 transition-colors" th:href="@{/auth/register}">Register Account</a>
+</p>
+</div>
+</div>
+<p class="mt-8 text-center text-[10px] text-gray-400 dark:text-gray-600 uppercase tracking-widest font-bold">Official Member Portal</p>
+</div>
+</body></html>

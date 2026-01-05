@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Member Management Form</title>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>.hide-scrollbar::-webkit-scrollbar {
+            height: 6px;
+        }
+        .hide-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .hide-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 20px;
+        }
+    </style>
+<style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-display bg-background-light dark:bg-background-dark text-[#111318] dark:text-white overflow-x-hidden">
+<div class="relative flex min-h-screen w-full flex-col group/design-root">
+<header class="sticky top-0 z-20 flex items-center bg-white dark:bg-[#1A202C] p-4 pb-2 border-b border-gray-200 dark:border-gray-800 justify-between shadow-sm">
+<div class="text-[#111318] dark:text-white flex size-12 shrink-0 items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors cursor-pointer">
+<span class="material-symbols-outlined">arrow_back</span>
+</div>
+<h2 class="text-[#111318] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-12">
+            Youth Union Management
+        </h2>
+</header>
+<main class="flex-1 overflow-y-auto pb-24">
+<div class="px-4 py-4">
+<h3 class="text-[#111318] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">Member Details</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Enter information for new or existing member.</p>
+</div>
+<div class="bg-white dark:bg-[#1A202C] mx-4 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 p-4 space-y-4">
+<div class="flex flex-col sm:flex-row gap-4">
+<label class="flex flex-col flex-1">
+<p class="text-[#111318] dark:text-gray-200 text-sm font-medium leading-normal pb-2">Member ID</p>
+<input class="form-input flex w-full rounded-lg text-[#111318] dark:text-white border border-[#dbdfe6] dark:border-gray-700 bg-white dark:bg-gray-900 focus:border-primary focus:ring-1 focus:ring-primary h-12 px-4 placeholder:text-[#616f89] text-sm font-normal transition-all" placeholder="e.g. 2023001" value=""/>
+</label>
+<label class="flex flex-col flex-1">
+<p class="text-[#111318] dark:text-gray-200 text-sm font-medium leading-normal pb-2">Full Name</p>
+<input class="form-input flex w-full rounded-lg text-[#111318] dark:text-white border border-[#dbdfe6] dark:border-gray-700 bg-white dark:bg-gray-900 focus:border-primary focus:ring-1 focus:ring-primary h-12 px-4 placeholder:text-[#616f89] text-sm font-normal transition-all" placeholder="Enter Full Name" value=""/>
+</label>
+</div>
+<div class="flex flex-col sm:flex-row gap-4">
+<label class="flex flex-col flex-1">
+<p class="text-[#111318] dark:text-gray-200 text-sm font-medium leading-normal pb-2">CCCD (ID Card)</p>
+<input class="form-input flex w-full rounded-lg text-[#111318] dark:text-white border border-[#dbdfe6] dark:border-gray-700 bg-white dark:bg-gray-900 focus:border-primary focus:ring-1 focus:ring-primary h-12 px-4 placeholder:text-[#616f89] text-sm font-normal transition-all" placeholder="Enter CCCD Number" type="number" value=""/>
+</label>
+<div class="flex flex-col flex-1">
+<p class="text-[#111318] dark:text-gray-200 text-sm font-medium leading-normal pb-2">Gender</p>
+<select class="form-select flex w-full rounded-lg text-[#111318] dark:text-white border border-[#dbdfe6] dark:border-gray-700 bg-white dark:bg-gray-900 focus:border-primary focus:ring-1 focus:ring-primary h-12 px-4 text-sm font-normal transition-all appearance-none pr-10">
+<option disabled="" selected="" value="">Select Branch</option>
+<option value="1">Male</option>
+<option value="2">Female</option>
+<option value="3">Other</option>
+</select>
+
+</div>
+</div>
+<div class="flex flex-col sm:flex-row gap-4">
+<label class="flex flex-col flex-1 relative">
+<p class="text-[#111318] dark:text-gray-200 text-sm font-medium leading-normal pb-2">Birth Date</p>
+<div class="relative">
+<input class="form-input flex w-full rounded-lg text-[#111318] dark:text-white border border-[#dbdfe6] dark:border-gray-700 bg-white dark:bg-gray-900 focus:border-primary focus:ring-1 focus:ring-primary h-12 px-4 text-sm font-normal transition-all appearance-none" placeholder="Select Date" type="date"/>
+<span class="material-symbols-outlined absolute right-3 top-3 text-gray-400 pointer-events-none text-xl">calendar_today</span>
+</div>
+</label>
+<label class="flex flex-col flex-1 relative">
+<p class="text-[#111318] dark:text-gray-200 text-sm font-medium leading-normal pb-2">Join Date</p>
+<div class="relative">
+<input class="form-input flex w-full rounded-lg text-[#111318] dark:text-white border border-[#dbdfe6] dark:border-gray-700 bg-white dark:bg-gray-900 focus:border-primary focus:ring-1 focus:ring-primary h-12 px-4 text-sm font-normal transition-all appearance-none" placeholder="Select Date" type="date"/>
+<span class="material-symbols-outlined absolute right-3 top-3 text-gray-400 pointer-events-none text-xl">event</span>
+</div>
+</label>
+</div>
+<div class="flex flex-col sm:flex-row gap-4">
+<label class="flex flex-col flex-1">
+<p class="text-[#111318] dark:text-gray-200 text-sm font-medium leading-normal pb-2">Phone Number</p>
+<input class="form-input flex w-full rounded-lg text-[#111318] dark:text-white border border-[#dbdfe6] dark:border-gray-700 bg-white dark:bg-gray-900 focus:border-primary focus:ring-1 focus:ring-primary h-12 px-4 placeholder:text-[#616f89] text-sm font-normal transition-all" placeholder="Enter Phone" type="tel" value=""/>
+</label>
+<label class="flex flex-col flex-1">
+<p class="text-[#111318] dark:text-gray-200 text-sm font-medium leading-normal pb-2">Email Address</p>
+<input class="form-input flex w-full rounded-lg text-[#111318] dark:text-white border border-[#dbdfe6] dark:border-gray-700 bg-white dark:bg-gray-900 focus:border-primary focus:ring-1 focus:ring-primary h-12 px-4 placeholder:text-[#616f89] text-sm font-normal transition-all" placeholder="Enter Email" type="email" value=""/>
+</label>
+</div>
+<div class="flex flex-col sm:flex-row gap-4">
+<label class="flex flex-col flex-1">
+<p class="text-[#111318] dark:text-gray-200 text-sm font-medium leading-normal pb-2">Branch</p>
+<div class="relative">
+<select class="form-select flex w-full rounded-lg text-[#111318] dark:text-white border border-[#dbdfe6] dark:border-gray-700 bg-white dark:bg-gray-900 focus:border-primary focus:ring-1 focus:ring-primary h-12 px-4 text-sm font-normal transition-all appearance-none pr-10">
+<option disabled="" selected="" value="">Select Branch</option>
+<option value="1">Branch A</option>
+<option value="2">Branch B</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-3 text-gray-400 pointer-events-none text-xl">expand_more</span>
+</div>
+</label>
+<label class="flex flex-col flex-1">
+<p class="text-[#111318] dark:text-gray-200 text-sm font-medium leading-normal pb-2">Position</p>
+<div class="relative">
+<select class="form-select flex w-full rounded-lg text-[#111318] dark:text-white border border-[#dbdfe6] dark:border-gray-700 bg-white dark:bg-gray-900 focus:border-primary focus:ring-1 focus:ring-primary h-12 px-4 text-sm font-normal transition-all appearance-none pr-10">
+<option disabled="" selected="" value="">Select Position</option>
+<option value="1">Secretary</option>
+<option value="2">Member</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-3 text-gray-400 pointer-events-none text-xl">expand_more</span>
+</div>
+</label>
+</div>
+<div class="flex flex-col sm:flex-row gap-4">
+<label class="flex flex-col flex-1">
+<p class="text-[#111318] dark:text-gray-200 text-sm font-medium leading-normal pb-2">Status</p>
+<div class="relative">
+<select class="form-select flex w-full rounded-lg text-[#111318] dark:text-white border border-[#dbdfe6] dark:border-gray-700 bg-white dark:bg-gray-900 focus:border-primary focus:ring-1 focus:ring-primary h-12 px-4 text-sm font-normal transition-all appearance-none pr-10">
+<option selected="" value="Active">Active</option>
+<option value="Inactive">Inactive</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-3 text-gray-400 pointer-events-none text-xl">expand_more</span>
+</div>
+</label>
+</div>
+</div>
+<div class="px-4 py-6">
+<div class="grid grid-cols-3 gap-3">
+<button class="flex flex-col items-center justify-center p-3 rounded-xl bg-primary text-white shadow-md active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-2xl mb-1">add_circle</span>
+<span class="text-xs font-semibold">Add</span>
+</button>
+<button class="flex flex-col items-center justify-center p-3 rounded-xl bg-primary text-white shadow-md active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-2xl mb-1">save</span>
+<span class="text-xs font-semibold">Save</span>
+</button>
+<button class="flex flex-col items-center justify-center p-3 rounded-xl bg-white dark:bg-[#2D3748] text-primary dark:text-blue-400 border border-gray-200 dark:border-gray-700 shadow-sm active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-2xl mb-1">search</span>
+<span class="text-xs font-semibold">Search</span>
+</button>
+<button class="flex flex-col items-center justify-center p-3 rounded-xl bg-white dark:bg-[#2D3748] text-[#111318] dark:text-white border border-gray-200 dark:border-gray-700 shadow-sm active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-2xl mb-1">edit</span>
+<span class="text-xs font-semibold">Edit</span>
+</button>
+<button class="flex flex-col items-center justify-center p-3 rounded-xl bg-white dark:bg-[#2D3748] text-[#111318] dark:text-white border border-gray-200 dark:border-gray-700 shadow-sm active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-2xl mb-1">refresh</span>
+<span class="text-xs font-semibold">Refresh</span>
+</button>
+<button class="flex flex-col items-center justify-center p-3 rounded-xl bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 border border-red-100 dark:border-red-900 shadow-sm active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-2xl mb-1">delete</span>
+<span class="text-xs font-semibold">Delete</span>
+</button>
+</div>
+</div>
+<div class="px-4 pb-8">
+<button class="w-full flex items-center justify-center gap-2 p-4 rounded-xl bg-white dark:bg-[#2D3748] text-primary dark:text-blue-400 border border-primary/20 dark:border-blue-500/30 hover:bg-gray-50 dark:hover:bg-gray-800 shadow-sm active:scale-[0.98] transition-all group">
+<span class="material-symbols-outlined text-2xl group-hover:scale-110 transition-transform">list_alt</span>
+<a th:href="@{/auth/listDV}"><span class="text-base font-bold">View Member List</span></a>
+</button>
+</div>
+</main>
+</div>
+
+</body></html>

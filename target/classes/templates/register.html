@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Youth Union Registration</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#1e3a8a", // Deep blue from button
+                        secondary: "#dc2626", // Red from logo/link
+                        "background-light": "#f3f4f6", // Light gray background
+                        "background-dark": "#111827", // Dark mode background
+                        "card-light": "#ffffff",
+                        "card-dark": "#1f2937",
+                        "text-main-light": "#111827",
+                        "text-main-dark": "#f9fafb",
+                        "text-sub-light": "#4b5563",
+                        "text-sub-dark": "#9ca3af",
+                        "input-bg-light": "#f9fafb",
+                        "input-bg-dark": "#374151",
+                        "input-border-light": "#d1d5db",
+                        "input-border-dark": "#4b5563",
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                        body: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                        'xl': '1rem',
+                        '2xl': '1.5rem',
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.1)',
+                        'glow': '0 0 15px rgba(30, 58, 138, 0.3)',
+                    }
+                },
+            },
+        };
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: rgba(156, 163, 175, 0.5);
+            border-radius: 20px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen flex flex-col items-center justify-center p-4 font-body transition-colors duration-300">
+<div class="w-full max-w-md flex flex-col items-center space-y-6 my-auto">
+<div class="flex flex-col items-center space-y-4">
+<div class="relative">
+<div class="w-24 h-24 rounded-full border-4 border-primary dark:border-blue-500 flex items-center justify-center bg-white dark:bg-gray-800 shadow-lg relative z-10">
+<div class="w-20 h-20 rounded-full border border-dashed border-gray-300 dark:border-gray-600 flex items-center justify-center">
+<div class="text-secondary dark:text-red-500">
+<span class="material-icons-outlined text-5xl">verified</span>
+</div>
+</div>
+</div>
+<div class="absolute -bottom-3 left-1/2 transform -translate-x-1/2 z-20 bg-primary dark:bg-blue-600 text-white text-[10px] font-bold py-1 px-4 rounded-full shadow-md uppercase tracking-wider border-2 border-white dark:border-gray-800">
+                    Union
+                </div>
+</div>
+<div class="text-center mt-4">
+<h1 class="text-3xl font-bold text-text-main-light dark:text-text-main-dark tracking-tight">YOUTH UNION</h1>
+<p class="text-xs font-bold text-primary dark:text-blue-400 uppercase tracking-widest mt-1">Member Management System</p>
+</div>
+</div>
+<div class="w-full bg-card-light dark:bg-card-dark rounded-2xl shadow-soft p-6 sm:p-8 border-t-4 border-secondary dark:border-red-500 relative overflow-hidden">
+<div class="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-blue-50 dark:bg-blue-900/20 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
+<h2 class="text-xl font-semibold text-text-main-light dark:text-text-main-dark mb-6 text-center">Create Account</h2>
+<form action="/auth/register" class="space-y-5" method="POST">
+<div class="space-y-1.5">
+<label class="block text-sm font-semibold text-text-main-light dark:text-text-main-dark" for="fullname" name="username" >Full Name</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-icons-outlined text-gray-400 dark:text-gray-500 text-xl">badge</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-3 border border-input-border-light dark:border-input-border-dark rounded-lg leading-5 bg-input-bg-light dark:bg-input-bg-dark text-text-main-light dark:text-text-main-dark placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-blue-500 focus:border-primary dark:focus:border-blue-500 transition duration-150 ease-in-out sm:text-sm" id="fullname" name="username" placeholder="Enter full name" type="text" required />
+</div>
+</div>
+<div class="space-y-1.5">
+<label class="block text-sm font-semibold text-text-main-light dark:text-text-main-dark" for="email">Email Address</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-icons-outlined text-gray-400 dark:text-gray-500 text-xl">email</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-3 border border-input-border-light dark:border-input-border-dark rounded-lg leading-5 bg-input-bg-light dark:bg-input-bg-dark text-text-main-light dark:text-text-main-dark placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-blue-500 focus:border-primary dark:focus:border-blue-500 transition duration-150 ease-in-out sm:text-sm" id="email" name="email" placeholder="example@youthunion.org" type="email" required />
+</div>
+</div>
+<div class="space-y-1.5">
+<label class="block text-sm font-semibold text-text-main-light dark:text-text-main-dark" for="password">Password</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-icons-outlined text-gray-400 dark:text-gray-500 text-xl">lock</span>
+</div>
+<input class="block w-full pl-10 pr-10 py-3 border border-input-border-light dark:border-input-border-dark rounded-lg leading-5 bg-input-bg-light dark:bg-input-bg-dark text-text-main-light dark:text-text-main-dark placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-blue-500 focus:border-primary dark:focus:border-blue-500 transition duration-150 ease-in-out sm:text-sm" id="password" name="password" placeholder="••••••••" type="password" required />
+<div class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer">
+<span class="material-icons-outlined text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 text-xl">visibility_off</span>
+</div>
+</div>
+</div>
+<div class="space-y-1.5">
+<label class="block text-sm font-semibold text-text-main-light dark:text-text-main-dark" for="confirm-password">Confirm Password</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-icons-outlined text-gray-400 dark:text-gray-500 text-xl">lock_reset</span>
+</div>
+<input class="block w-full pl-10 pr-10 py-3 border border-input-border-light dark:border-input-border-dark rounded-lg leading-5 bg-input-bg-light dark:bg-input-bg-dark text-text-main-light dark:text-text-main-dark placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-blue-500 focus:border-primary dark:focus:border-blue-500 transition duration-150 ease-in-out sm:text-sm" id="confirm-password" name="confirm-password" placeholder="••••••••" type="password"/>
+</div>
+</div>
+<div class="flex items-start mt-2">
+<div class="flex items-center h-5">
+<input class="h-4 w-4 text-primary border-gray-300 rounded focus:ring-primary dark:bg-gray-700 dark:border-gray-600" id="terms" name="terms" type="checkbox"/>
+</div>
+<div class="ml-2 text-sm">
+<label class="font-medium text-text-sub-light dark:text-text-sub-dark" for="terms">I agree to the <a class="text-primary dark:text-blue-400 hover:underline" href="#">Terms of Service</a> and <a class="text-primary dark:text-blue-400 hover:underline" href="#">Privacy Policy</a></label>
+</div>
+</div>
+<button class="w-full flex justify-center py-3.5 px-4 border border-transparent rounded-lg shadow-sm text-sm font-bold text-white bg-primary hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:focus:ring-offset-gray-900 transition-all duration-200 transform hover:scale-[1.02]" type="submit">
+                    REGISTER
+                </button>
+                <p style="color:red" th:text="${error}"></p>
+</form>
+<div class="relative my-6">
+<div aria-hidden="true" class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-gray-200 dark:border-gray-700"></div>
+</div>
+</div>
+<div class="text-center">
+<p class="text-sm text-text-sub-light dark:text-text-sub-dark">
+                    Already a member? 
+                    <a class="font-bold text-secondary dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 transition-colors" href="#">
+                        Sign In
+                    </a>
+</p>
+</div>
+</div>
+<div class="text-center pb-4">
+<p class="text-[10px] text-gray-400 dark:text-gray-500 uppercase tracking-widest font-medium">Official Member Portal</p>
+</div>
+</div>
+
+</body></html>
