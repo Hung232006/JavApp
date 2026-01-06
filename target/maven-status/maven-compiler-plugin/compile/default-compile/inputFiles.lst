@@ -1,8 +1,10 @@
 D:\JavApp\src\main\java\com\javapp\App.java
 D:\JavApp\src\main\java\com\javapp\controller\AuthController.java
-D:\JavApp\src\main\java\com\javapp\controller\DoanVienController.java
 D:\JavApp\src\main\java\com\javapp\controller\HomeController.java
+D:\JavApp\src\main\java\com\javapp\controller\MemberController.java
+D:\JavApp\src\main\java\com\javapp\dao\MemberRepository.java
 D:\JavApp\src\main\java\com\javapp\dao\UserRepository.java
-D:\JavApp\src\main\java\com\javapp\model\DoanVien.java
+D:\JavApp\src\main\java\com\javapp\model\Member.java
 D:\JavApp\src\main\java\com\javapp\model\User.java
+D:\JavApp\src\main\java\com\javapp\Service\MemberService.java
 D:\JavApp\src\main\java\com\javapp\util\DBConnection.java

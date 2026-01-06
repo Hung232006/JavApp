@@ -1,5 +1,10 @@
-com\javapp\controller\DoanVienController.class
+com\javapp\dao\UserRepository.class
+com\javapp\controller\HomeController.class
+com\javapp\Service\MemberService.class
+com\javapp\model\Member.class
 com\javapp\util\DBConnection.class
+com\javapp\dao\MemberRepository.class
+com\javapp\controller\MemberController.class
 com\javapp\App.class
 com\javapp\model\User.class
 com\javapp\controller\AuthController.class

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html class="light" lang="en"><head>
+<html class="light" lang="en" xmlns:th="http://www.thymeleaf.org"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Member List</title>
@@ -101,218 +101,80 @@
 </button>
 </div>
 </div>
-<!-- Main Content List -->
 <div class="flex-1 px-4 py-4 space-y-3">
-<!-- List Item 1: Active, Male, Leader -->
-<div class="group bg-surface-light dark:bg-surface-dark p-4 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 active:scale-[0.99] transition-all cursor-pointer">
-<div class="flex items-start gap-4">
-<!-- Avatar -->
-<div class="relative shrink-0">
-<div class="h-14 w-14 rounded-full bg-gray-200 bg-cover bg-center border-2 border-white dark:border-gray-700 shadow-sm" data-alt="Portrait of a young man smiling" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAtum2-pw2B-hyvGj8Zwzd3wECg9aFGBuQ0wrIM3CQnq_pR7r6qqe4GJJbbhK36RlqCJ6iI0xPC-uTcpuQTuAA7MGL0MiGGsh0K1zWhK3RQNoOVOUODQQVXR7iTbaac2Sqz_7fQluuuAPajHlvNdcnhEw9zUwc6s_l-0q4MYFxOckejZiAiqifm1q3cRKQaNvuTQI9vFTB91D0IfQy0DScNMSiQ8JFTn1O4T7R9kjR1YFWd6d6VoKgEDq1kaY9lEXwcxPOwp22txYRr");'></div>
-<div class="absolute -bottom-1 -right-1 bg-white dark:bg-gray-800 rounded-full p-0.5">
-<span class="material-symbols-outlined text-blue-500 text-sm bg-blue-100 dark:bg-blue-900 rounded-full p-0.5" style="font-size: 14px;">male</span>
-</div>
-</div>
-<!-- Info -->
-<div class="flex-1 min-w-0">
-<div class="flex justify-between items-start">
-<div>
-<h3 class="text-[#111318] dark:text-white text-base font-bold leading-tight truncate">Nguyễn Văn Nam</h3>
-<p class="text-xs text-primary font-medium mt-0.5 flex items-center gap-1">
-<span>ID: 1900123</span>
-<span class="w-1 h-1 rounded-full bg-gray-300 dark:bg-gray-600"></span>
-<span class="bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 px-1.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide">Bí thư</span>
-</p>
-</div>
-<div class="shrink-0 pl-2">
-<span class="inline-flex items-center gap-1 rounded-full bg-green-50 dark:bg-green-900/20 px-2 py-1 text-xs font-medium text-green-700 dark:text-green-400 border border-green-100 dark:border-green-900/30">
-<span class="h-1.5 w-1.5 rounded-full bg-green-600 dark:bg-green-400"></span>
-                                Đang sinh hoạt
+    <!-- Lặp qua danh sách đoàn viên -->
+    <div th:each="member : ${members}"
+         th:classappend="${member.status == 'Active'} 
+ ? 'group bg-surface-light dark:bg-surface-dark' 
+ : 'group bg-surface-light dark:bg-surface-dark opacity-60'"
+
+         class="p-4 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 active:scale-[0.99] transition-all cursor-pointer">
+        
+        <div class="flex items-start gap-4">
+            <!-- Avatar -->
+            <div class="relative shrink-0">
+                <div
+                     class="h-14 w-14 rounded-full bg-primary/10 flex items-center justify-center text-primary text-lg font-bold shadow-sm border-2 border-white dark:border-gray-700"
+                     th:text="${#strings.substring(member.fullName,0,1)}">
+
+                    AB
+                </div>
+                <!-- Biểu tượng giới tính -->
+                <div class="absolute -bottom-1 -right-1 bg-white dark:bg-gray-800 rounded-full p-0.5">
+                    <span class="material-symbols-outlined text-sm rounded-full p-0.5"
+      th:classappend="${member.gender == 'Male'} 
+        ? 'text-blue-500 bg-blue-100 dark:bg-blue-900' 
+        : 'text-pink-500 bg-pink-100 dark:bg-pink-900'"
+      th:text="${member.gender == 'Male'} ? 'male' : 'female'">
+</span>
+<span th:text="${member.gender == 'Male'} ? 'Nam' : 'Nữ'"></span>
+
+                </div>
+            </div>
+
+            <!-- Thông tin chính -->
+            <div class="flex-1 min-w-0">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <!-- Họ tên -->
+                        <h3 class="text-[#111318] dark:text-white text-base font-bold leading-tight truncate"
+                            th:text="${member.fullName}">Full Name</h3>
+
+                        <!-- ID và chức vụ -->
+                        <p class="text-xs text-primary font-medium mt-0.5 flex items-center gap-1">
+                            <span th:text="'ID: ' + ${member.memberID}">ID</span>
+                            <span class="w-1 h-1 rounded-full bg-gray-300 dark:bg-gray-600"></span>
+                            <span th:text="${member.position}"
+                                  class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-1.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide">
+                                Đoàn viên
                             </span>
-</div>
-</div>
-<div class="mt-3 flex items-center flex-wrap gap-y-1 gap-x-3 text-xs text-[#616f89] dark:text-gray-400">
-<div class="flex items-center gap-1">
-<span class="material-symbols-outlined text-gray-400" style="font-size: 14px;">calendar_today</span>
-                            12/05/1999
-                        </div>
-<div class="flex items-center gap-1">
-<span class="material-symbols-outlined text-gray-400" style="font-size: 14px;">apartment</span>
-                            Chi đoàn 12A1
-                        </div>
-</div>
-</div>
-</div>
-</div>
-<!-- List Item 2: Active, Female, Member -->
-<div class="group bg-surface-light dark:bg-surface-dark p-4 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 active:scale-[0.99] transition-all cursor-pointer">
-<div class="flex items-start gap-4">
-<!-- Avatar -->
-<div class="relative shrink-0">
-<div class="h-14 w-14 rounded-full bg-gray-200 bg-cover bg-center border-2 border-white dark:border-gray-700 shadow-sm" data-alt="Portrait of a young woman smiling" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDZP-QbL9fChCZN2iqM2U4Sz12AzP0sBif7Ob3s6jYslzzkoS_nG2qNW0UWVbjvYpLwcNoEPRzo_NmT5hCxXjoOsqzPNPpxly_X5-1jegZH-OO8jnEAbLgsVb7Mn91yQzfIc-gK0zy9BGvcI6Nr2WHqiT-1zJvI3uY1PYnmdLysw40l0j6R15pWYxIcQ5e2bPfHqrQF2Dhybn2SVlhHJ_yFQdLL3Oav7Thc9SDtk-4go93BQpbEh6li-eJ1SosK1xRrsMZ1QSKwzyPx");'></div>
-<div class="absolute -bottom-1 -right-1 bg-white dark:bg-gray-800 rounded-full p-0.5">
-<span class="material-symbols-outlined text-pink-500 text-sm bg-pink-100 dark:bg-pink-900 rounded-full p-0.5" style="font-size: 14px;">female</span>
-</div>
-</div>
-<!-- Info -->
-<div class="flex-1 min-w-0">
-<div class="flex justify-between items-start">
-<div>
-<h3 class="text-[#111318] dark:text-white text-base font-bold leading-tight truncate">Trần Thị Hương</h3>
-<p class="text-xs text-primary font-medium mt-0.5 flex items-center gap-1">
-<span>ID: 2000456</span>
-<span class="w-1 h-1 rounded-full bg-gray-300 dark:bg-gray-600"></span>
-<span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-1.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide">Đoàn viên</span>
-</p>
-</div>
-<div class="shrink-0 pl-2">
-<span class="inline-flex items-center gap-1 rounded-full bg-green-50 dark:bg-green-900/20 px-2 py-1 text-xs font-medium text-green-700 dark:text-green-400 border border-green-100 dark:border-green-900/30">
-<span class="h-1.5 w-1.5 rounded-full bg-green-600 dark:bg-green-400"></span>
-                                Đang sinh hoạt
-                            </span>
-</div>
-</div>
-<div class="mt-3 flex items-center flex-wrap gap-y-1 gap-x-3 text-xs text-[#616f89] dark:text-gray-400">
-<div class="flex items-center gap-1">
-<span class="material-symbols-outlined text-gray-400" style="font-size: 14px;">calendar_today</span>
-                            08/03/2001
-                        </div>
-<div class="flex items-center gap-1">
-<span class="material-symbols-outlined text-gray-400" style="font-size: 14px;">apartment</span>
-                            Chi đoàn 10B2
-                        </div>
-</div>
-</div>
-</div>
-</div>
-<!-- List Item 3: Pending, Male, Member -->
-<div class="group bg-surface-light dark:bg-surface-dark p-4 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 active:scale-[0.99] transition-all cursor-pointer opacity-90 hover:opacity-100">
-<div class="flex items-start gap-4">
-<!-- Avatar (Initials fallback) -->
-<div class="relative shrink-0">
-<div class="h-14 w-14 rounded-full bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center text-white text-lg font-bold shadow-sm border-2 border-white dark:border-gray-700">
-                        LH
+                        </p>
                     </div>
-<div class="absolute -bottom-1 -right-1 bg-white dark:bg-gray-800 rounded-full p-0.5">
-<span class="material-symbols-outlined text-blue-500 text-sm bg-blue-100 dark:bg-blue-900 rounded-full p-0.5" style="font-size: 14px;">male</span>
-</div>
-</div>
-<!-- Info -->
-<div class="flex-1 min-w-0">
-<div class="flex justify-between items-start">
-<div>
-<h3 class="text-[#111318] dark:text-white text-base font-bold leading-tight truncate">Lê Huy</h3>
-<p class="text-xs text-primary font-medium mt-0.5 flex items-center gap-1">
-<span>ID: 2100889</span>
-<span class="w-1 h-1 rounded-full bg-gray-300 dark:bg-gray-600"></span>
-<span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-1.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide">Đoàn viên</span>
-</p>
-</div>
-<div class="shrink-0 pl-2">
-<span class="inline-flex items-center gap-1 rounded-full bg-yellow-50 dark:bg-yellow-900/20 px-2 py-1 text-xs font-medium text-yellow-700 dark:text-yellow-400 border border-yellow-100 dark:border-yellow-900/30">
-<span class="h-1.5 w-1.5 rounded-full bg-yellow-600 dark:bg-yellow-400"></span>
-                                Chờ duyệt
-                            </span>
-</div>
-</div>
-<div class="mt-3 flex items-center flex-wrap gap-y-1 gap-x-3 text-xs text-[#616f89] dark:text-gray-400">
-<div class="flex items-center gap-1">
-<span class="material-symbols-outlined text-gray-400" style="font-size: 14px;">calendar_today</span>
-                            15/11/2002
-                        </div>
-<div class="flex items-center gap-1">
-<span class="material-symbols-outlined text-gray-400" style="font-size: 14px;">apartment</span>
-                            Chi đoàn 11C
-                        </div>
-</div>
-</div>
-</div>
-</div>
-<!-- List Item 4: Transferred, Female, Deputy Secretary -->
-<div class="group bg-surface-light dark:bg-surface-dark p-4 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 active:scale-[0.99] transition-all cursor-pointer">
-<div class="flex items-start gap-4">
-<!-- Avatar -->
-<div class="relative shrink-0">
-<div class="h-14 w-14 rounded-full bg-gray-200 bg-cover bg-center border-2 border-white dark:border-gray-700 shadow-sm" data-alt="Portrait of a woman looking sideways" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCfVGPFqx_4p6B_fJ8r7tO-dOnjpiFAKPNtBjjsruy8MwhEUTWcc7ddqvr4wa_8e_izNIODomBet8SdSCqZre4pXkq6FON_WbokXnghjlKIqHKQn5PlNdpCgQfTeOlKNqdqwF6QYfe7f8Wg9MgYT7mrQAp1SXDb5KqDkBy7zLPM4odXh-QO9vi7KPrTgr1nvKqB0XdrOZI5w2BZ2niKeU4gry_4TW_YrtC4xiWos7cX2XZkYFm_gBp-Ith0Ih42WuEXmAQpajuqoCMZ");'></div>
-<div class="absolute -bottom-1 -right-1 bg-white dark:bg-gray-800 rounded-full p-0.5">
-<span class="material-symbols-outlined text-pink-500 text-sm bg-pink-100 dark:bg-pink-900 rounded-full p-0.5" style="font-size: 14px;">female</span>
-</div>
-</div>
-<!-- Info -->
-<div class="flex-1 min-w-0">
-<div class="flex justify-between items-start">
-<div>
-<h3 class="text-[#111318] dark:text-white text-base font-bold leading-tight truncate">Phạm Minh Anh</h3>
-<p class="text-xs text-primary font-medium mt-0.5 flex items-center gap-1">
-<span>ID: 1800222</span>
-<span class="w-1 h-1 rounded-full bg-gray-300 dark:bg-gray-600"></span>
-<span class="bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 px-1.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide">Phó Bí thư</span>
-</p>
-</div>
-<div class="shrink-0 pl-2">
-<span class="inline-flex items-center gap-1 rounded-full bg-gray-100 dark:bg-gray-700/50 px-2 py-1 text-xs font-medium text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-gray-700">
-<span class="h-1.5 w-1.5 rounded-full bg-gray-500"></span>
-                                Đã chuyển
-                            </span>
-</div>
-</div>
-<div class="mt-3 flex items-center flex-wrap gap-y-1 gap-x-3 text-xs text-[#616f89] dark:text-gray-400">
-<div class="flex items-center gap-1">
-<span class="material-symbols-outlined text-gray-400" style="font-size: 14px;">calendar_today</span>
-                            02/09/2000
-                        </div>
-<div class="flex items-center gap-1">
-<span class="material-symbols-outlined text-gray-400" style="font-size: 14px;">apartment</span>
-                            Chi đoàn Cán bộ
-                        </div>
-</div>
-</div>
-</div>
-</div>
-<!-- List Item 5: Active, Male, Member -->
-<div class="group bg-surface-light dark:bg-surface-dark p-4 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 active:scale-[0.99] transition-all cursor-pointer">
-<div class="flex items-start gap-4">
-<!-- Avatar (Initials fallback) -->
-<div class="relative shrink-0">
-<div class="h-14 w-14 rounded-full bg-primary/10 flex items-center justify-center text-primary text-lg font-bold shadow-sm border-2 border-white dark:border-gray-700">
-                        NK
+
+                    <!-- Trạng thái sinh hoạt -->
+                    <div class="shrink-0 pl-2">
+                        <span th:text="${member.status == 'Active'} ? 'Đang sinh hoạt' : 'Ngừng sinh hoạt'"></span>
+
+
                     </div>
-<div class="absolute -bottom-1 -right-1 bg-white dark:bg-gray-800 rounded-full p-0.5">
-<span class="material-symbols-outlined text-blue-500 text-sm bg-blue-100 dark:bg-blue-900 rounded-full p-0.5" style="font-size: 14px;">male</span>
+                </div>
+
+                <!-- Ngày sinh và chi đoàn -->
+                <div class="mt-3 flex items-center flex-wrap gap-y-1 gap-x-3 text-xs text-[#616f89] dark:text-gray-400">
+                    <div class="flex items-center gap-1">
+                        <span class="material-symbols-outlined text-gray-400" style="font-size: 14px;">calendar_today</span>
+                        <span th:text="${member.birthDate}">25/12/2003</span>
+                    </div>
+                    <div class="flex items-center gap-1">
+                        <span class="material-symbols-outlined text-gray-400" style="font-size: 14px;">apartment</span>
+                        <span th:text="${member.branch}">Chi đoàn 10A5</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-</div>
-<!-- Info -->
-<div class="flex-1 min-w-0">
-<div class="flex justify-between items-start">
-<div>
-<h3 class="text-[#111318] dark:text-white text-base font-bold leading-tight truncate">Nguyễn Khoa</h3>
-<p class="text-xs text-primary font-medium mt-0.5 flex items-center gap-1">
-<span>ID: 2200111</span>
-<span class="w-1 h-1 rounded-full bg-gray-300 dark:bg-gray-600"></span>
-<span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-1.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide">Đoàn viên</span>
-</p>
-</div>
-<div class="shrink-0 pl-2">
-<span class="inline-flex items-center gap-1 rounded-full bg-green-50 dark:bg-green-900/20 px-2 py-1 text-xs font-medium text-green-700 dark:text-green-400 border border-green-100 dark:border-green-900/30">
-<span class="h-1.5 w-1.5 rounded-full bg-green-600 dark:bg-green-400"></span>
-                                Đang sinh hoạt
-                            </span>
-</div>
-</div>
-<div class="mt-3 flex items-center flex-wrap gap-y-1 gap-x-3 text-xs text-[#616f89] dark:text-gray-400">
-<div class="flex items-center gap-1">
-<span class="material-symbols-outlined text-gray-400" style="font-size: 14px;">calendar_today</span>
-                            25/12/2003
-                        </div>
-<div class="flex items-center gap-1">
-<span class="material-symbols-outlined text-gray-400" style="font-size: 14px;">apartment</span>
-                            Chi đoàn 10A5
-                        </div>
-</div>
-</div>
-</div>
-</div>
-</div>
+
 <!-- Empty State (Hidden by default, shown for demonstration logic concept) -->
 <!-- 
     <div class="flex flex-col items-center justify-center py-12 px-4 text-center">
