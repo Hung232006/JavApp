@@ -193,6 +193,24 @@
 </div>
 </div>
 </form>
+<div class="px-4 py-4">
+    <h3 class="text-lg font-bold text-[#111318] dark:text-white mb-2">Danh sách đoàn viên</h3>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+<div th:each="member : ${members}"
+     class="p-4 bg-white dark:bg-[#1A202C] rounded-xl shadow-sm cursor-pointer hover:shadow-md transition"
+     th:attr="data-member-id=${member.memberID}"
+     onclick="openMember(this.dataset.memberId)">
+
+    <h4 class="text-sm font-bold text-[#111318] dark:text-white" th:text="${member.fullName}">Tên</h4>
+    <p class="text-xs text-gray-500 dark:text-gray-400" th:text="'ID: ' + ${member.memberID}">ID: 2023001</p>
+    <p class="text-xs text-gray-500 dark:text-gray-400"
+       th:text="${member.status == 'Active' ? 'Đang sinh hoạt' : 'Ngừng sinh hoạt'}">Trạng thái</p>
+</div>
+
+    </div>
+</div>
+
 <div class="px-4 pb-8">
 <button class="w-full flex items-center justify-center gap-2 p-4 rounded-xl bg-white dark:bg-[#2D3748] text-primary dark:text-blue-400 border border-primary/20 dark:border-blue-500/30 hover:bg-gray-50 dark:hover:bg-gray-800 shadow-sm active:scale-[0.98] transition-all group">
 <span class="material-symbols-outlined text-2xl group-hover:scale-110 transition-transform">list_alt</span>
@@ -200,6 +218,14 @@
 </button>
 </div>
 </main>
+</div>
+<div id="memberModal" class="hidden fixed inset-0 bg-black/50 items-center justify-center z-50">
+    <div class="bg-white dark:bg-[#1A202C] rounded-2xl w-11/12 md:w-1/2 p-6 relative max-h-[90vh] overflow-y-auto">
+        <button onclick="closeMember()" class="absolute top-3 right-3 text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-white">X</button>
+        <div id="modalContent">
+            <!-- Nội dung chi tiết member sẽ được fetch từ server -->
+        </div>
+    </div>
 </div>
 
 </body></html>

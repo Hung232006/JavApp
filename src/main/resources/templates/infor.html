@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Member Details</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "primary-light": "#eef4ff",
+                        "background-light": "#f2f4f7","background-dark": "#101622",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1a212e",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem", 
+                        "lg": "0.75rem", 
+                        "xl": "1rem", 
+                        "2xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+          min-height: max(884px, 100dvh);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-[#111318] dark:text-white font-display min-h-screen flex flex-col overflow-x-hidden">
+<div class="sticky top-0 z-50 bg-surface-light/95 dark:bg-surface-dark/95 backdrop-blur-md border-b border-gray-100 dark:border-gray-800">
+<div class="flex items-center justify-between px-4 h-[60px]">
+<button class="flex items-center justify-center w-10 h-10 -ml-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 transition-colors">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="text-lg font-bold text-[#111318] dark:text-white">Thông tin đoàn viên</h1>
+<button class="flex items-center justify-center w-10 h-10 -mr-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 text-primary font-medium transition-colors">
+<span class="material-symbols-outlined">edit</span>
+</button>
+</div>
+</div>
+<!-- src/main/resources/templates/infor.html -->
+<main th:fragment="memberDetailFragment" class="flex-1 p-4 space-y-4 pb-10">
+
+    <!-- Thẻ container chính -->
+    <div class="bg-surface-light dark:bg-surface-dark rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-800 flex flex-col items-center text-center relative overflow-hidden">
+        
+        <!-- Gradient top -->
+        <div class="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-primary-light to-transparent dark:from-primary/10 dark:to-transparent"></div>
+
+        <!-- Avatar + Giới tính -->
+        <div class="relative z-10 mb-3 group">
+            <div class="h-28 w-28 rounded-full border-4 border-white dark:border-surface-dark shadow-md flex items-center justify-center text-4xl font-bold"
+                 th:style="${member.gender == 'Male' ? 'background-color:#cfe0ff;color:#135bec' : 'background-color:#ffe0eb;color:#d63384'}"
+
+                 th:text="${member.fullName != null ? #strings.substring(member.fullName,0,1) : '?'}">
+                A
+            </div>
+            <div class="absolute bottom-0 right-0 bg-white dark:bg-surface-dark rounded-full p-1 shadow-sm border border-gray-100 dark:border-gray-700">
+                <span class="material-symbols-outlined text-sm"
+                      th:text="${member.gender == 'Male' ? 'male' : 'female'}"></span>
+            </div>
+        </div>
+
+        <!-- Tên + trạng thái -->
+        <h2 class="text-xl font-bold text-[#111318] dark:text-white relative z-10" th:text="${member.fullName}"></h2>
+        <span class="inline-flex items-center gap-1 mt-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide"
+              th:classappend="${member.status == 'Active' ? 'bg-green-50 text-green-700 border border-green-100 dark:bg-green-900/20 dark:text-green-400 dark:border-green-800/30' : 'bg-red-50 text-red-700 border border-red-100 dark:bg-red-900/20 dark:text-red-400 dark:border-red-800/30'}"
+
+              th:text="${member.status == 'Active' ? 'Đang sinh hoạt' : 'Ngừng sinh hoạt'}">
+            
+        </span>
+
+        <!-- Hành động gọi/nhắn -->
+        <div class="grid grid-cols-2 gap-3 mt-6 w-full relative z-10">
+            <button class="flex items-center justify-center gap-2 h-11 rounded-xl bg-primary text-white text-sm font-semibold hover:bg-blue-700 active:scale-95 transition-all shadow-sm shadow-blue-200 dark:shadow-none">
+                <span class="material-symbols-outlined text-[20px]">call</span>
+                Gọi điện
+            </button>
+            <button class="flex items-center justify-center gap-2 h-11 rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 text-sm font-semibold hover:bg-gray-50 active:scale-95 transition-all">
+                <span class="material-symbols-outlined text-[20px]">mail</span>
+                Nhắn tin
+            </button>
+        </div>
+    </div>
+
+    <!-- Lịch sử đóng đoàn phí -->
+    <button class="w-full bg-surface-light dark:bg-surface-dark rounded-2xl p-4 shadow-sm border border-gray-100 dark:border-gray-800 flex items-center justify-between group active:scale-[0.99] transition-all">
+        <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-orange-50 dark:bg-orange-900/20 flex items-center justify-center text-orange-600 dark:text-orange-400">
+                <span class="material-symbols-outlined">receipt_long</span>
+            </div>
+            <div class="text-left">
+                <div class="text-base font-bold text-[#111318] dark:text-white">Lịch sử đóng đoàn phí</div>
+                <div class="text-xs text-gray-500 font-medium">Lần đóng gần nhất: <span>Tháng 3/2024</span></div>
+            </div>
+        </div>
+        <span class="material-symbols-outlined text-gray-400 group-hover:text-primary transition-colors">chevron_right</span>
+    </button>
+
+    <!-- Thông tin đoàn vụ -->
+    <div class="bg-surface-light dark:bg-surface-dark rounded-2xl p-5 shadow-sm border border-gray-100 dark:border-gray-800">
+        <div class="flex items-center gap-2 mb-5 pb-3 border-b border-gray-100 dark:border-gray-800">
+            <span class="material-symbols-outlined text-primary">diversity_3</span>
+            <h3 class="text-sm font-bold text-[#111318] dark:text-white uppercase tracking-wider">
+                Thông tin đoàn vụ
+            </h3>
+        </div>
+        <div class="space-y-4">
+            <div class="flex justify-between items-start">
+                <span class="text-sm text-gray-500 dark:text-gray-400">Mã đoàn viên</span>
+                <span class="text-sm font-semibold text-[#111318] dark:text-white font-mono px-2 py-0.5 rounded" th:text="${member.memberID}"></span>
+            </div>
+            <div class="flex justify-between items-start">
+                <span class="text-sm text-gray-500 dark:text-gray-400">Ngày vào Đoàn</span>
+                <span class="text-sm font-medium text-[#111318] dark:text-white" th:text="${member.joinDate}"></span>
+            </div>
+            <div class="flex justify-between items-start">
+                <span class="text-sm text-gray-500 dark:text-gray-400">Chức vụ</span>
+                <span class="text-sm font-bold text-primary bg-primary/10 px-2 py-0.5 rounded" th:text="${member.position}"></span>
+            </div>
+            <div class="flex justify-between items-start">
+                <span class="text-sm text-gray-500 dark:text-gray-400">Chi đoàn</span>
+                <span class="text-sm font-medium text-[#111318] dark:text-white" th:text="${member.branch}"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Thông tin cá nhân -->
+    <div class="bg-surface-light dark:bg-surface-dark rounded-2xl p-5 shadow-sm border border-gray-100 dark:border-gray-800">
+        <div class="flex items-center gap-2 mb-5 pb-3 border-b border-gray-100 dark:border-gray-800">
+            <span class="material-symbols-outlined text-green-600">person</span>
+            <h3 class="text-sm font-bold text-[#111318] dark:text-white uppercase tracking-wider">
+                Thông tin cá nhân
+            </h3>
+        </div>
+        <div class="space-y-4">
+            <div class="space-y-1">
+                <span class="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Họ và tên</span>
+                <span class="text-base font-semibold text-[#111318] dark:text-white block" th:text="${member.fullName}"></span>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <span class="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Ngày sinh</span>
+                    <span class="text-sm font-medium text-[#111318] dark:text-white block" th:text="${member.birthDate}"></span>
+                </div>
+                <div>
+                    <span class="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Giới tính</span>
+                    <span class="text-sm font-medium text-[#111318] dark:text-white block" th:text="${member.gender == 'Male' ? 'Nam' : 'Nữ'}"></span>
+                </div>
+            </div>
+            <div>
+                <span class="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Số CCCD/CMND</span>
+                <span class="text-sm font-mono text-[#111318] dark:text-white block" th:text="${member.cccd}"></span>
+            </div>
+            <div>
+                <span class="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Số điện thoại</span>
+                <span class="text-sm font-medium text-[#111318] dark:text-white block" th:text="${member.phoneNumber}"></span>
+            </div>
+            <div>
+                <span class="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Email</span>
+                <span class="text-sm font-medium text-[#111318] dark:text-white block" th:text="${member.emailAddress}"></span>
+            </div>
+            <div>
+                <span class="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Địa chỉ</span>
+                <span class="text-sm font-medium text-[#111318] dark:text-white block" th:text="${member.address != null ? member.address : 'Chưa cập nhật'}"
+>Hà Nội, Việt Nam</span>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<script>
+function openMember(id) {
+    fetch('/member/' + id + '/fragment')
+
+        .then(res => {
+            if (!res.ok) throw new Error("Không thể load member");
+            return res.text();
+        })
+        .then(html => {
+            const modal = document.getElementById('memberModal');
+            const content = document.getElementById('modalContent');
+            content.innerHTML = html;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        })
+        .catch(err => alert(err.message));
+}
+
+function closeMember() {
+    const modal = document.getElementById('memberModal');
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+}
+
+</script>
+<!-- Modal container -->
+<div id="memberModal" class="hidden fixed inset-0 bg-black/40 items-center justify-center z-50">
+    <div id="modalContent" class="bg-surface-light dark:bg-surface-dark rounded-2xl p-6 shadow-lg max-w-lg w-full">
+        <!-- Nội dung member sẽ được load vào đây -->
+    </div>
+</div>
+
+</body></html>

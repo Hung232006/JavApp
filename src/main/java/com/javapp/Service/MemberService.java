@@ -42,4 +42,9 @@ public class MemberService {
         return memberRepository.findById(memberID)
                 .orElseThrow(() -> new RuntimeException("Member with ID " + memberID + " not found"));
     }
+
+public Member findById(String id) {
+    return getById(id);  // getById đã có logic lấy member từ DB
+}
+
 }
