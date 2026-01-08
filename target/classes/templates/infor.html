@@ -8,6 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="/js/member.js"></script>
 <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
@@ -48,17 +49,25 @@
 <body class="bg-background-light dark:bg-background-dark text-[#111318] dark:text-white font-display min-h-screen flex flex-col overflow-x-hidden">
 <div class="sticky top-0 z-50 bg-surface-light/95 dark:bg-surface-dark/95 backdrop-blur-md border-b border-gray-100 dark:border-gray-800">
 <div class="flex items-center justify-between px-4 h-[60px]">
-<button class="flex items-center justify-center w-10 h-10 -ml-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 transition-colors">
+<button onclick="window.location.href='/member/list'" class="flex items-center justify-center w-10 h-10 -ml-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 transition-colors">
 <span class="material-symbols-outlined">arrow_back</span>
 </button>
 <h1 class="text-lg font-bold text-[#111318] dark:text-white">Thông tin đoàn viên</h1>
-<button class="flex items-center justify-center w-10 h-10 -mr-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 text-primary font-medium transition-colors">
-<span class="material-symbols-outlined">edit</span>
+<button id="editBtn"
+        onclick="enableEdit()"
+        class="flex items-center justify-center w-10 h-10 -mr-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 text-primary transition-colors">
+    <span class="material-symbols-outlined">edit</span>
+</button>
+
+<button id="saveBtn"
+        onclick="saveMember()"
+        class="hidden flex items-center justify-center w-10 h-10 -mr-2 rounded-full bg-primary text-white transition-colors">
+    <span class="material-symbols-outlined">save</span>
 </button>
 </div>
 </div>
 <!-- src/main/resources/templates/infor.html -->
-<main th:fragment="memberDetailFragment" class="flex-1 p-4 space-y-4 pb-10">
+<main  class="flex-1 p-4 space-y-4 pb-10">
 
     <!-- Thẻ container chính -->
     <div class="bg-surface-light dark:bg-surface-dark rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-800 flex flex-col items-center text-center relative overflow-hidden">
@@ -103,13 +112,13 @@
     </div>
 
     <!-- Lịch sử đóng đoàn phí -->
-    <button class="w-full bg-surface-light dark:bg-surface-dark rounded-2xl p-4 shadow-sm border border-gray-100 dark:border-gray-800 flex items-center justify-between group active:scale-[0.99] transition-all">
+    <button onclick="window.location.href='/auth/fees'" class="w-full bg-surface-light dark:bg-surface-dark rounded-2xl p-4 shadow-sm border border-gray-100 dark:border-gray-800 flex items-center justify-between group active:scale-[0.99] transition-all">
         <div class="flex items-center gap-4">
             <div class="w-12 h-12 rounded-xl bg-orange-50 dark:bg-orange-900/20 flex items-center justify-center text-orange-600 dark:text-orange-400">
                 <span class="material-symbols-outlined">receipt_long</span>
             </div>
             <div class="text-left">
-                <div class="text-base font-bold text-[#111318] dark:text-white">Lịch sử đóng đoàn phí</div>
+                <div  class="text-base font-bold text-[#111318] dark:text-white">Lịch sử đóng đoàn phí</div>
                 <div class="text-xs text-gray-500 font-medium">Lần đóng gần nhất: <span>Tháng 3/2024</span></div>
             </div>
         </div>
@@ -128,6 +137,8 @@
             <div class="flex justify-between items-start">
                 <span class="text-sm text-gray-500 dark:text-gray-400">Mã đoàn viên</span>
                 <span class="text-sm font-semibold text-[#111318] dark:text-white font-mono px-2 py-0.5 rounded" th:text="${member.memberID}"></span>
+                <input type="hidden" id="memberID" th:value="${member.memberID}">
+
             </div>
             <div class="flex justify-between items-start">
                 <span class="text-sm text-gray-500 dark:text-gray-400">Ngày vào Đoàn</span>
@@ -155,12 +166,26 @@
         <div class="space-y-4">
             <div class="space-y-1">
                 <span class="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Họ và tên</span>
-                <span class="text-base font-semibold text-[#111318] dark:text-white block" th:text="${member.fullName}"></span>
+                <input
+  class="editable hidden w-full bg-gray-50 dark:bg-gray-800 rounded px-3 py-2 text-sm"
+  name="fullName"
+  th:value="${member.fullName}"
+/>
+
+<span class="view" th:text="${member.fullName}"></span>
+
             </div>
             <div class="grid grid-cols-2 gap-4">
                 <div>
                     <span class="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Ngày sinh</span>
-                    <span class="text-sm font-medium text-[#111318] dark:text-white block" th:text="${member.birthDate}"></span>
+                    <input
+  class="editable hidden w-full bg-gray-50 dark:bg-gray-800 rounded px-3 py-2 text-sm"
+  name="birthDate"
+  th:value="${member.birthDate}"
+/>
+
+<span class="view" th:text="${member.birthDate}"></span>
+
                 </div>
                 <div>
                     <span class="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Giới tính</span>
@@ -169,15 +194,36 @@
             </div>
             <div>
                 <span class="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Số CCCD/CMND</span>
-                <span class="text-sm font-mono text-[#111318] dark:text-white block" th:text="${member.cccd}"></span>
+                <input
+  class="editable hidden w-full bg-gray-50 dark:bg-gray-800 rounded px-3 py-2 text-sm"
+  name="cccd"
+  th:value="${member.cccd}"
+/>
+
+<span class="view" th:text="${member.cccd}"></span>
+
             </div>
             <div>
                 <span class="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Số điện thoại</span>
-                <span class="text-sm font-medium text-[#111318] dark:text-white block" th:text="${member.phoneNumber}"></span>
+                <input
+  class="editable hidden w-full bg-gray-50 dark:bg-gray-800 rounded px-3 py-2 text-sm"
+  name="phoneNumber"
+  th:value="${member.phoneNumber}"
+/>
+
+<span class="view" th:text="${member.phoneNumber}"></span>
+
             </div>
             <div>
                 <span class="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Email</span>
-                <span class="text-sm font-medium text-[#111318] dark:text-white block" th:text="${member.emailAddress}"></span>
+                <input
+  class="editable hidden w-full bg-gray-50 dark:bg-gray-800 rounded px-3 py-2 text-sm"
+  name="emailAddress"
+  th:value="${member.emailAddress}"
+/>
+
+<span class="view" th:text="${member.emailAddress}"></span>
+
             </div>
             <div>
                 <span class="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Địa chỉ</span>
@@ -189,31 +235,8 @@
 
 </main>
 
-<script>
-function openMember(id) {
-    fetch('/member/' + id + '/fragment')
 
-        .then(res => {
-            if (!res.ok) throw new Error("Không thể load member");
-            return res.text();
-        })
-        .then(html => {
-            const modal = document.getElementById('memberModal');
-            const content = document.getElementById('modalContent');
-            content.innerHTML = html;
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-        })
-        .catch(err => alert(err.message));
-}
 
-function closeMember() {
-    const modal = document.getElementById('memberModal');
-    modal.classList.add('hidden');
-    modal.classList.remove('flex');
-}
-
-</script>
 <!-- Modal container -->
 <div id="memberModal" class="hidden fixed inset-0 bg-black/40 items-center justify-center z-50">
     <div id="modalContent" class="bg-surface-light dark:bg-surface-dark rounded-2xl p-6 shadow-lg max-w-lg w-full">

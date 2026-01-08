@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Payment History</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "primary-light": "#eef4ff",
+                        "background-light": "#f2f4f7","background-dark": "#101622",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1a212e",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem", 
+                        "lg": "0.75rem", 
+                        "xl": "1rem", 
+                        "2xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+          min-height: max(884px, 100dvh);
+        }.no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }.no-scrollbar {
+            -ms-overflow-style: none;scrollbar-width: none;}
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-[#111318] dark:text-white font-display min-h-screen flex flex-col overflow-x-hidden">
+<div class="sticky top-0 z-50 bg-surface-light/95 dark:bg-surface-dark/95 backdrop-blur-md border-b border-gray-100 dark:border-gray-800">
+<div class="flex items-center justify-between px-4 h-[60px]">
+<button onclick="window.location.href='/auth/listDV'" class="flex items-center justify-center w-10 h-10 -ml-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 transition-colors">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="text-lg font-bold text-[#111318] dark:text-white">Lịch sử đóng đoàn phí</h1>
+<button class="flex items-center justify-center w-10 h-10 -mr-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 transition-colors">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</div>
+</div>
+<main class="flex-1 p-4 space-y-5 pb-10">
+<div class="bg-gradient-to-br from-primary to-blue-600 rounded-2xl p-6 shadow-lg shadow-blue-200 dark:shadow-none text-white relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl -mr-10 -mt-10"></div>
+<div class="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full blur-xl -ml-8 -mb-8"></div>
+<div class="relative z-10">
+<div class="flex items-start justify-between">
+<div>
+<p class="text-blue-100 text-sm font-medium mb-1">Tổng đã đóng </p>
+<h2 class="text-3xl font-bold">120.000 đ</h2>
+</div>
+<div class="bg-white/20 backdrop-blur-sm p-2 rounded-xl">
+<span class="material-symbols-outlined text-white">account_balance_wallet</span>
+</div>
+</div>
+<div class="mt-6 flex gap-6">
+<div>
+<p class="text-blue-100 text-xs uppercase tracking-wide">Đã hoàn thành</p>
+<p class="text-lg font-semibold mt-0.5">6 tháng</p>
+</div>
+<div>
+<p class="text-blue-100 text-xs uppercase tracking-wide">Chờ đóng</p>
+<p class="text-lg font-semibold mt-0.5">1 tháng</p>
+</div>
+</div>
+</div>
+</div>
+<div>
+<div class="flex gap-3 overflow-x-auto no-scrollbar pb-2">
+<button class="flex-none px-4 py-2 rounded-xl bg-[#111318] dark:bg-white text-white dark:text-[#111318] text-sm font-semibold shadow-sm">
+                    Tất cả
+                </button>
+<button class="flex-none px-4 py-2 rounded-xl bg-surface-light dark:bg-surface-dark border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 text-sm font-medium whitespace-nowrap">
+                    Đã đóng
+                </button>
+<button class="flex-none px-4 py-2 rounded-xl bg-surface-light dark:bg-surface-dark border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 text-sm font-medium whitespace-nowrap">
+                    Chưa đóng
+                </button>
+<button class="flex-none px-4 py-2 rounded-xl bg-surface-light dark:bg-surface-dark border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 text-sm font-medium flex items-center gap-1">
+<span>Năm 2024</span>
+<span class="material-symbols-outlined text-sm">keyboard_arrow_down</span>
+</button>
+</div>
+</div>
+<div class="space-y-6">
+<div class="space-y-3">
+<h3 class="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider ml-1">Tháng 4, 2024</h3>
+<div class="bg-surface-light dark:bg-surface-dark rounded-2xl p-4 shadow-sm border border-gray-100 dark:border-gray-800 flex items-center justify-between active:scale-[0.98] transition-transform">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-orange-50 dark:bg-orange-900/20 flex items-center justify-center text-orange-600 dark:text-orange-400 shrink-0">
+<span class="material-symbols-outlined">pending_actions</span>
+</div>
+<div>
+<div class="text-base font-bold text-[#111318] dark:text-white">Đoàn phí Tháng 4</div>
+<div class="text-xs text-orange-600 dark:text-orange-400 font-medium mt-0.5">Hạn đóng: 30/04/2024</div>
+</div>
+</div>
+<div class="text-right">
+<div class="text-base font-bold text-[#111318] dark:text-white">20.000đ</div>
+<span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-300 mt-1">Chờ đóng</span>
+</div>
+</div>
+</div>
+<div class="space-y-3">
+<h3 class="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider ml-1">Tháng 3, 2024</h3>
+<div class="bg-surface-light dark:bg-surface-dark rounded-2xl p-4 shadow-sm border border-gray-100 dark:border-gray-800 flex items-center justify-between active:scale-[0.98] transition-transform">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-green-50 dark:bg-green-900/20 flex items-center justify-center text-green-600 dark:text-green-400 shrink-0">
+<span class="material-symbols-outlined">account_balance</span>
+</div>
+<div>
+<div class="text-base font-bold text-[#111318] dark:text-white">Đoàn phí Tháng 3</div>
+<div class="text-xs text-gray-500 font-medium mt-0.5 flex items-center gap-1">
+<span>15/03/2024</span>
+<span class="w-1 h-1 rounded-full bg-gray-300"></span>
+<span>Chuyển khoản</span>
+</div>
+</div>
+</div>
+<div class="text-right">
+<div class="text-base font-bold text-green-600 dark:text-green-400">+20.000đ</div>
+<span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-green-50 text-green-700 dark:bg-green-900/30 dark:text-green-300 mt-1">Đã đóng</span>
+</div>
+</div>
+</div>
+<div class="space-y-3">
+<h3 class="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider ml-1">Tháng 2, 2024</h3>
+<div class="bg-surface-light dark:bg-surface-dark rounded-2xl p-4 shadow-sm border border-gray-100 dark:border-gray-800 flex items-center justify-between active:scale-[0.98] transition-transform">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-green-50 dark:bg-green-900/20 flex items-center justify-center text-green-600 dark:text-green-400 shrink-0">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<div>
+<div class="text-base font-bold text-[#111318] dark:text-white">Đoàn phí Tháng 2</div>
+<div class="text-xs text-gray-500 font-medium mt-0.5 flex items-center gap-1">
+<span>10/02/2024</span>
+<span class="w-1 h-1 rounded-full bg-gray-300"></span>
+<span>Tiền mặt</span>
+</div>
+</div>
+</div>
+<div class="text-right">
+<div class="text-base font-bold text-green-600 dark:text-green-400">+20.000đ</div>
+<span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-green-50 text-green-700 dark:bg-green-900/30 dark:text-green-300 mt-1">Đã đóng</span>
+</div>
+</div>
+</div>
+<div class="space-y-3">
+<h3 class="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider ml-1">Tháng 1, 2024</h3>
+<div class="bg-surface-light dark:bg-surface-dark rounded-2xl p-4 shadow-sm border border-gray-100 dark:border-gray-800 flex items-center justify-between active:scale-[0.98] transition-transform">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-green-50 dark:bg-green-900/20 flex items-center justify-center text-green-600 dark:text-green-400 shrink-0">
+<span class="material-symbols-outlined">account_balance</span>
+</div>
+<div>
+<div class="text-base font-bold text-[#111318] dark:text-white">Đoàn phí Tháng 1</div>
+<div class="text-xs text-gray-500 font-medium mt-0.5 flex items-center gap-1">
+<span>05/01/2024</span>
+<span class="w-1 h-1 rounded-full bg-gray-300"></span>
+<span>Chuyển khoản</span>
+</div>
+</div>
+</div>
+<div class="text-right">
+<div class="text-base font-bold text-green-600 dark:text-green-400">+20.000đ</div>
+<span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-green-50 text-green-700 dark:bg-green-900/30 dark:text-green-300 mt-1">Đã đóng</span>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-2xl p-4 shadow-sm border border-gray-100 dark:border-gray-800 flex items-center justify-between active:scale-[0.98] transition-transform">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center text-blue-600 dark:text-blue-400 shrink-0">
+<span class="material-symbols-outlined">volunteer_activism</span>
+</div>
+<div>
+<div class="text-base font-bold text-[#111318] dark:text-white">Quyên góp từ thiện</div>
+<div class="text-xs text-gray-500 font-medium mt-0.5 flex items-center gap-1">
+<span>02/01/2024</span>
+<span class="w-1 h-1 rounded-full bg-gray-300"></span>
+<span>Tiền mặt</span>
+</div>
+</div>
+</div>
+<div class="text-right">
+<div class="text-base font-bold text-green-600 dark:text-green-400">+50.000đ</div>
+<span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-green-50 text-green-700 dark:bg-green-900/30 dark:text-green-300 mt-1">Đã đóng</span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex justify-center pt-4">
+<button class="text-sm text-gray-500 font-medium hover:text-primary transition-colors flex items-center gap-1">
+                Xem các năm trước
+                <span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+</div>
+</main>
+
+</body></html>

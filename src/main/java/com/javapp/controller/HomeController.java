@@ -1,8 +1,5 @@
 package com.javapp.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.javapp.dao.MemberRepository;
 import com.javapp.model.Member;
+
 
 @Controller
 public class HomeController {
@@ -29,12 +27,17 @@ public class HomeController {
     }
 
     // Trang danh sách đoàn viên
-    @GetMapping("/auth/listDV")
-    public String listDV(Model model) {
-        List<Member> members = memberRepository.findAll();
-        model.addAttribute("members", members != null ? members : new ArrayList<>());
-        return "listDV";
-    }
+
+// Trang lịch sử đóng đoàn phí
+@GetMapping("/auth/fees")
+public String getFees() {
+    return "fees";
+}
+@GetMapping("/auth/infor")
+public String getInfor() {
+    return "infor";
+}
+    
 
     // Lấy chi tiết member cho modal
 @GetMapping("/home/member/{id}")
